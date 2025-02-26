@@ -5,10 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab_2"
         mc:Ignorable="d"
-        Title="Canvas_Task" Height="250" Width="550">
-    <Canvas Background="Aqua">
-        <Label Canvas.Top="20" Canvas.Left="20">Label</Label>
-        <TextBox Canvas.Top="40" Canvas.Left="40">text</TextBox>
-        <Button Canvas.Top="60" Canvas.Left="60">button</Button>
-    </Canvas>
+        Title="TextEditor" Height="350" Width="460">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" BorderBrush="#FFCBBEBE" BorderThickness="2" CornerRadius="10">
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <Button Width="60" Height="60">
+                    <Image ToolTip="Відкрити" Source="images/Open.png"/>
+                </Button>
+                <Button Width="60" Height="60">
+                    <Image ToolTip="Стерти" Source="images/Clear.png"/>
+                </Button>
+                <Button Width="60" Height="60">
+                    <Image ToolTip="Копіювати" Source="images/Copy.png"/>
+                </Button>
+                <Button Width="60" Height="60">
+                    <Image ToolTip="Вставити" Source="images/Paste.png"/>
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="1" BorderBrush="#FFCBBEBE" BorderThickness="2" CornerRadius="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBox Grid.Row="0" Margin="10" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Text=""/>
+
+                <DockPanel Grid.Row="1" Margin="10 5 10 10">
+                    <Button Width="30" DockPanel.Dock="Bottom" Content="OK" />
+                </DockPanel>
+            </Grid>
+        </Border>
+    </Grid>
+
 </Window>
