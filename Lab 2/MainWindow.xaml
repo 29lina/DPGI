@@ -5,11 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab_2"
         mc:Ignorable="d"
-        Title="DockPanel_Task" Height="250" Width="500">
-    <DockPanel LastChildFill="False">
-        <Label DockPanel.Dock="Top" HorizontalAlignment="Center">Label</Label>
-        <TextBox DockPanel.Dock="Left" Width="200">TextBox</TextBox>
-        <TextBox DockPanel.Dock="Right" Width="200">TextBox</TextBox>
-        <Button DockPanel.Dock="Bottom" Margin="0 0 0 35" Height="20" Width="70">Button</Button>
-    </DockPanel>
+        Title="Canvas_Task" Height="250" Width="550">
+    <Canvas Background="Aqua">
+        <Label Canvas.Top="20" Canvas.Left="20">Label</Label>
+        <TextBox Canvas.Top="40" Canvas.Left="40">text</TextBox>
+        <Button Canvas.Top="60" Canvas.Left="60">button</Button>
+    </Canvas>
 </Window>
