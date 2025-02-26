@@ -5,35 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab_2"
         mc:Ignorable="d"
-        Title="WrapPanel_Task" Height="250" Width="600">
-    <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-
-        <WrapPanel HorizontalAlignment="Center">
-            <Label Content="Label"/>
-            <TextBox Text="TextBox" TextAlignment="Center" Width="55"/>
-            <TextBox Text="TextBox" TextAlignment="Center" Width="55"/>
-            <TextBox Text="TextBox" TextAlignment="Center" Width="55"/>
-            <TextBox Text="TextBox" TextAlignment="Center" Width="55"/>
-            <TextBox Text="TextBox" TextAlignment="Center" Width="55"/>
-            <TextBox Text="TextBox" TextAlignment="Center" Width="55"/>
-            <TextBox Text="TextBox" TextAlignment="Center" Width="55"/>
-            <TextBox Text="TextBox" TextAlignment="Center" Width="55"/>
-        </WrapPanel>
-
-        <WrapPanel HorizontalAlignment="Center">
-            <Label Content="Label"/>
-            <TextBox Text="TextBox" TextAlignment="Center" Width="55"/>
-            <TextBox Text="TextBox" TextAlignment="Center" Width="55"/>
-            <TextBox Text="TextBox" TextAlignment="Center" Width="55"/>
-            <TextBox Text="TextBox" TextAlignment="Center" Width="55"/>
-            <TextBox Text="TextBox" TextAlignment="Center" Width="55"/>
-            <TextBox Text="TextBox" TextAlignment="Center" Width="55"/>
-            <TextBox Text="TextBox" TextAlignment="Center" Width="55"/>
-            <TextBox Text="TextBox" TextAlignment="Center" Width="55"/>
-        </WrapPanel>
-
-        <WrapPanel HorizontalAlignment="Center" Margin="30">
-            <Button Content="Button"/>
-        </WrapPanel>
-    </WrapPanel>
+        Title="DockPanel_Task" Height="250" Width="500">
+    <DockPanel LastChildFill="False">
+        <Label DockPanel.Dock="Top" HorizontalAlignment="Center">Label</Label>
+        <TextBox DockPanel.Dock="Left" Width="200">TextBox</TextBox>
+        <TextBox DockPanel.Dock="Right" Width="200">TextBox</TextBox>
+        <Button DockPanel.Dock="Bottom" Margin="0 0 0 35" Height="20" Width="70">Button</Button>
+    </DockPanel>
 </Window>
