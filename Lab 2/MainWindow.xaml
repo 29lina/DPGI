@@ -5,22 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab_2"
         mc:Ignorable="d"
-        Title="Grid_Task" Height="450" Width="800">
-    <Grid ShowGridLines="True">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        Title="StackPanel_Task" Height="330" Width="500">
+    <StackPanel Margin="50">
+        <Label HorizontalAlignment="Center">Label</Label>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+        <TextBox Text="TextBox" BorderThickness="0,2,0,1"/>
+        <TextBox Text="TextBox" BorderThickness="0,1,0,1"/>
+        <TextBox Text="TextBox" BorderThickness="0,1,0,1"/>
+        <TextBox Text="TextBox" BorderThickness="0,1,0,1"/>
 
-        <Label Grid.Row="0" Grid.Column="1" Content="Label"/>
-        <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Text="TextBox" HorizontalAlignment="Stretch"/>
-        <Button Grid.Row="2" Grid.Column="1" Content="Button"/>
-    </Grid>
+        <Button Margin="55" Width="200">Button</Button>
+    </StackPanel>
+
 </Window>
