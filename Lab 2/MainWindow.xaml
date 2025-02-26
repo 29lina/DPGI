@@ -6,6 +6,19 @@
         xmlns:local="clr-namespace:Lab_2"
         mc:Ignorable="d"
         Title="TextEditor" Height="350" Width="460">
+    <Window.Resources>
+        <LinearGradientBrush x:Key="LinearPanelBrush">
+            <GradientStop Color="Yellow" Offset="0"></GradientStop>
+            <GradientStop Color="Aqua" Offset="0.5"></GradientStop>
+            <GradientStop Color="Yellow" Offset="0.8"></GradientStop>
+        </LinearGradientBrush>
+
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -13,7 +26,7 @@
         </Grid.RowDefinitions>
 
         <Border Grid.Row="0" BorderBrush="#FFCBBEBE" BorderThickness="2" CornerRadius="10">
-            <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Background="{StaticResource LinearPanelBrush}">
                 <Button Width="60" Height="60">
                     <Image ToolTip="Відкрити" Source="images/Open.png"/>
                 </Button>
@@ -30,16 +43,16 @@
         </Border>
 
         <Border Grid.Row="1" BorderBrush="#FFCBBEBE" BorderThickness="2" CornerRadius="10">
-            <Grid>
+            <Grid Background="{StaticResource LinearPanelBrush}">
                 <Grid.RowDefinitions>
-                    <RowDefinition />
+                    <RowDefinition/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBox Grid.Row="0" Margin="10" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Text=""/>
+                <TextBox Grid.Row="0" Margin="10" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
 
                 <DockPanel Grid.Row="1" Margin="10 5 10 10">
-                    <Button Width="30" DockPanel.Dock="Bottom" Content="OK" />
+                    <Button Width="30" DockPanel.Dock="Bottom" Content="OK" Style="{x:Null}"/>
                 </DockPanel>
             </Grid>
         </Border>
