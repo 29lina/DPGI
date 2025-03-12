@@ -34,7 +34,7 @@ namespace TimerApp
 
         private void ExecuteStartTimer(object sender, ExecutedRoutedEventArgs e)
         {
-            if (int.TryParse(MinutesTextBox.Text, out int minutes) && minutes > 0)
+            if (double.TryParse(MinutesTextBox.Text, out double minutes) && minutes > 0)
             {
                 timeLeft = TimeSpan.FromMinutes(minutes);
                 CountdownTextBlock.Text = timeLeft.ToString(@"hh\:mm\:ss");
