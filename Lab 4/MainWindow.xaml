@@ -1,12 +1,73 @@
 ﻿<Window x:Class="Lab_4.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Lab_4"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Студенти" Height="450" Width="650"
+        Loaded="Window_Loaded">
+    <DockPanel Name="dockMain">
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button x:Name="btnCreate" Content="Create" Click="BtnCreate_Click" />
+                <Button x:Name="btnUpdate" Content="Update" Click="BtnUpdate_Click" />
+                <Button x:Name="btnDelete" Content="Delete" Click="BtnDelete_Click" />
+                <Button x:Name="btnCancel" Content="Скасувати" Click="BtnCancel_Click" Visibility="Collapsed"/>
+            </ToolBar>
+        </ToolBarTray>
+
+        <Grid DataContext="{Binding ElementName=listStudents, Path=SelectedItem}" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <ScrollViewer Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Auto">
+                <ListBox Name="listStudents"
+                         MinWidth="150" MinHeight="200"
+                         ItemsSource="{Binding}"
+                         DisplayMemberPath="ПІБ"
+                         Margin="5"/>
+            </ScrollViewer>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center">
+                Номер залікової книжки:
+            </TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="5"
+                     x:Name="tbNomer"
+                     Text="{Binding Path=[Номер_залікової_книги], Mode=TwoWay}"
+                     Focusable="True" IsReadOnly="True"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center"
+                       x:Name="lblPIB" Visibility="Collapsed">
+                ПІБ:
+            </TextBlock>
+            <TextBox Grid.Row="2" Grid.Column="1" Margin="5"
+                     x:Name="tbPIB"
+                     Text="{Binding Path=[ПІБ], Mode=TwoWay}"
+                     Focusable="True" Visibility="Collapsed"/>
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Margin="5" VerticalAlignment="Center">
+                Група:
+            </TextBlock>
+            <TextBox Grid.Row="3" Grid.Column="1" Margin="5"
+                     x:Name="tbGrupa"
+                     Text="{Binding Path=[Група], Mode=TwoWay}"
+                     Focusable="True" IsReadOnly="True"/>
+
+            <TextBlock Grid.Row="4" Grid.Column="0" Margin="5" VerticalAlignment="Center">
+                Адреса:
+            </TextBlock>
+            <TextBox Grid.Row="4" Grid.Column="1" Margin="5"
+                     x:Name="tbAddress"
+                     Text="{Binding Path=[Адреса], Mode=TwoWay}"
+                     Focusable="True" IsReadOnly="True"/>
+        </Grid>
+    </DockPanel>
 </Window>
