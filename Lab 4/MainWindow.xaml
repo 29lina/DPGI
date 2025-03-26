@@ -9,7 +9,7 @@
                 <Button x:Name="btnCreate" Content="Create" Click="BtnCreate_Click" />
                 <Button x:Name="btnUpdate" Content="Update" Click="BtnUpdate_Click" />
                 <Button x:Name="btnDelete" Content="Delete" Click="BtnDelete_Click" />
-                <Button x:Name="btnCancel" Content="Скасувати" Click="BtnCancel_Click" Visibility="Collapsed"/>
+                <Button x:Name="btnCancel" Content="Cancel" Click="BtnCancel_Click" Visibility="Collapsed"/>
             </ToolBar>
         </ToolBarTray>
 
