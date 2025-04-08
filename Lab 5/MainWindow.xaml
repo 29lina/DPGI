@@ -148,7 +148,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal" Grid.Row="0">
-                        <Label Content="Частина адреси:"/>
+                        <Label Content="Адреса:"/>
                         <TextBox x:Name="txtAddress" Width="200"/>
                         <Button Content="Пошук" Click="btnSearchByAddress_Click"/>
                     </StackPanel>
