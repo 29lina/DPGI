@@ -110,6 +110,32 @@ namespace Lab_5
             dgQueryAddress.ItemsSource = query;
         }
 
+        private void txtAddress_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            string addressPart = txtAddress.Text.Trim();
+
+            if (string.IsNullOrEmpty(addressPart))
+            {
+                dgQueryAddress.ItemsSource = null;
+                return;
+            }
+
+            try
+            {
+                var query = context.Студенти
+                                   .Include("Група")
+                                   .Where(s => s.Адреса.Contains(addressPart))
+                                   .ToList();
+
+                dgQueryAddress.ItemsSource = query;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Помилка виконання запиту: " + ex.Message,
+                                "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         /// Радіокнопка "За кодом"
         private void rbGroupCode_Checked(object sender, RoutedEventArgs e)
         {

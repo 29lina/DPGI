@@ -149,8 +149,7 @@
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal" Grid.Row="0">
                         <Label Content="Адреса:"/>
-                        <TextBox x:Name="txtAddress" Width="200"/>
-                        <Button Content="Пошук" Click="btnSearchByAddress_Click"/>
+                        <TextBox x:Name="txtAddress" Width="200" TextChanged="txtAddress_TextChanged"/>
                     </StackPanel>
                     <ScrollViewer Grid.Row="1"
                         HorizontalScrollBarVisibility="Auto"
