@@ -1,0 +1,176 @@
+﻿<Window x:Class="CalculatorWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Калькулятор"
+        Width="350"
+        SizeToContent="Height"
+        Focusable="True"
+        Loaded="Window_Loaded"
+        PreviewTextInput="Window_PreviewTextInput"
+        PreviewKeyDown="Window_PreviewKeyDown">
+
+    <Window.Resources>
+        <!-- Стандартні кнопки калькулятора -->
+        <Style TargetType="Button" x:Key="CalcButtonStyle">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Background" Value="WhiteSmoke"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="DarkGray"/>
+        </Style>
+        <!-- Маленькі кнопки (для очищення історії) -->
+        <Style TargetType="Button" x:Key="SmallButtonStyle">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="4"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+        <!-- Поле дисплея -->
+        <Style TargetType="TextBox" x:Key="DisplayTextBoxStyle">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+        </Style>
+    </Window.Resources>
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black"/>
+            <GradientStop Color="#FF921F1F" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <!-- Дисплей -->
+            <RowDefinition Height="Auto"/>
+            <!-- Всі кнопки + історія -->
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Дисплей -->
+        <TextBox x:Name="Display"
+                 Style="{StaticResource DisplayTextBoxStyle}"
+                 Grid.Row="0"
+                 Height="70"
+                 Text="0" />
+
+        <!-- Область кнопок та історії -->
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <!-- 0: Історія + Backspace -->
+                <RowDefinition Height="Auto"/>
+                <!-- 1: Панель історії (скрита за замовчуванням) -->
+                <RowDefinition Height="Auto"/>
+                <!-- 2: C, ±, %, ÷ -->
+                <RowDefinition Height="*"/>
+                <!-- 3: 7,8,9,× -->
+                <RowDefinition Height="*"/>
+                <!-- 4: 4,5,6,− -->
+                <RowDefinition Height="*"/>
+                <!-- 5: 1,2,3,+ -->
+                <RowDefinition Height="*"/>
+                <!-- 6: 0,(),.,= -->
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Рядок 0: Історія + Backspace -->
+            <Button x:Name="HistoryButton"
+                    Content="🕑"
+                    ToolTip="Історія"
+                    Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                    Style="{StaticResource CalcButtonStyle}"
+                    Click="History_Click"/>
+            <Button Content="⌫"
+                    Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2"
+                    Style="{StaticResource CalcButtonStyle}"
+                    Click="Backspace_Click"/>
+
+            <!-- Рядок 1: Фіксоване поле історії -->
+            <Border x:Name="HistoryPanel"
+                    Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"
+                    Background="White"
+                    BorderBrush="Gray"
+                    BorderThickness="1"
+                    Height="150"
+                    Visibility="Collapsed"
+                    Margin="5,2,5,10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Кнопка очищення історії всередині панелі -->
+                    <Button Content="Очистити"
+                            Grid.Row="0"
+                            HorizontalAlignment="Right"
+                            Style="{StaticResource SmallButtonStyle}"
+                            Click="ClearHistory_Click"/>
+
+                    <!-- Список історії з прокруткою -->
+                    <ListBox x:Name="HistoryListBox"
+                             Grid.Row="1"
+                             Margin="5,2,5,5"
+                             SelectionMode="Single"
+                             PreviewKeyDown="HistoryListBox_PreviewKeyDown"
+                             MouseLeftButtonUp="HistoryListBox_MouseLeftButtonUp"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                </Grid>
+            </Border>
+
+            <!-- Рядок 2 -->
+            <Button Content="C"  Grid.Row="2" Grid.Column="0" Style="{StaticResource CalcButtonStyle}" Click="Clear_Click"/>
+            <Button Content="±"  Grid.Row="2" Grid.Column="1" Style="{StaticResource CalcButtonStyle}" Click="Negate_Click"/>
+            <Button Content="%"  Grid.Row="2" Grid.Column="2" Style="{StaticResource CalcButtonStyle}" Click="Percent_Click"/>
+            <Button Content="÷"  Grid.Row="2" Grid.Column="3" Style="{StaticResource CalcButtonStyle}" Click="Operator_Click"/>
+
+            <!-- Рядок 3 -->
+            <Button Content="7"  Grid.Row="3" Grid.Column="0" Style="{StaticResource CalcButtonStyle}" Click="Number_Click"/>
+            <Button Content="8"  Grid.Row="3" Grid.Column="1" Style="{StaticResource CalcButtonStyle}" Click="Number_Click"/>
+            <Button Content="9"  Grid.Row="3" Grid.Column="2" Style="{StaticResource CalcButtonStyle}" Click="Number_Click"/>
+            <Button Content="×"  Grid.Row="3" Grid.Column="3" Style="{StaticResource CalcButtonStyle}" Click="Operator_Click"/>
+
+            <!-- Рядок 4 -->
+            <Button Content="4"  Grid.Row="4" Grid.Column="0" Style="{StaticResource CalcButtonStyle}" Click="Number_Click"/>
+            <Button Content="5"  Grid.Row="4" Grid.Column="1" Style="{StaticResource CalcButtonStyle}" Click="Number_Click"/>
+            <Button Content="6"  Grid.Row="4" Grid.Column="2" Style="{StaticResource CalcButtonStyle}" Click="Number_Click"/>
+            <Button Content="−"  Grid.Row="4" Grid.Column="3" Style="{StaticResource CalcButtonStyle}" Click="Operator_Click"/>
+
+            <!-- Рядок 5 -->
+            <Button Content="1"  Grid.Row="5" Grid.Column="0" Style="{StaticResource CalcButtonStyle}" Click="Number_Click"/>
+            <Button Content="2"  Grid.Row="5" Grid.Column="1" Style="{StaticResource CalcButtonStyle}" Click="Number_Click"/>
+            <Button Content="3"  Grid.Row="5" Grid.Column="2" Style="{StaticResource CalcButtonStyle}" Click="Number_Click"/>
+            <Button Content="+"  Grid.Row="5" Grid.Column="3" Style="{StaticResource CalcButtonStyle}" Click="Operator_Click"/>
+
+            <!-- Рядок 6 -->
+            <Button Content="0"
+                    Grid.Row="6" Grid.Column="0"
+                    Style="{StaticResource CalcButtonStyle}"
+                    Click="Number_Click"/>
+            <Button Content="()"
+                    Grid.Row="6" Grid.Column="1"
+                    Style="{StaticResource CalcButtonStyle}"
+                    Click="Parentheses_Click"/>
+            <Button Content="."
+                    Grid.Row="6" Grid.Column="2"
+                    Style="{StaticResource CalcButtonStyle}"
+                    Click="Decimal_Click"/>
+            <Button Content="="
+                    Grid.Row="6" Grid.Column="3"
+                    Style="{StaticResource CalcButtonStyle}"
+                    Click="Equals_Click"/>
+        </Grid>
+    </Grid>
+</Window>
