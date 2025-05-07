@@ -91,6 +91,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CalculatorModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Commands\DataCommands.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
